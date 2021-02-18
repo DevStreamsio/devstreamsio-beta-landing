@@ -151,11 +151,16 @@ const IndexPage = () => {
             when it is ready!
           </p>
 
+          <form name="email-alert" hidden>
+            <input type="hidden" name="form-name" value="email-alert" />
+          </form>
+
           <form
             style={formStyles}
             name="email-alert"
             method="POST"
             data-netlify="true"
+            netlify
           >
             <input
               style={inputStyles}
