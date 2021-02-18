@@ -1,150 +1,185 @@
-import * as React from "react"
+import * as React from "react";
+import { createGlobalStyle } from "styled-components";
 
-// styles
+const logo = require("../images/ds_logo.svg");
+const screenshot = require("../images/screenshot.png");
+
+const colors = {
+  primary: "#013158",
+  background: "#1a1a22",
+  white: "#fff",
+  black: "#000",
+  green: "#00F995",
+};
+
+const CssReset = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+`;
+
 const pageStyles = {
-  color: "#232129",
-  padding: "96px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "stretch",
+  color: "#fff",
+  fontSize: "18px",
+  padding: "24px 48px",
+  minHeight: "100vh",
   fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
+  background: colors.background,
+};
+
+const infoContainerStyles = {
+  display: "flex",
+  flex: 2,
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "24px",
+};
+
+const screenshotContainerStyles = {
+  display: "flex",
+  flex: 2,
+};
+
+const screenshotStyles = {
+  width: "80%",
+  margin: "auto",
+  boxShadow: "rgba(0, 0, 0, 0.9) 13px 21px 27px 10px",
+};
+
+const headerContainer = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  margin: "1em",
+};
+
+const brandStyles = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  marginTop: "-25px",
+};
+
 const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
+  fontSize: "6em",
+};
+
+const subHeadingStyles = {
+  fontSize: "2em",
+  fontWeight: 300,
+  fontStyle: "italic",
+};
+
 const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-}
-const listItemStyles = {
-  fontWeight: "300",
-  fontSize: "24px",
-  maxWidth: "560px",
-}
+  padding: "24px",
+  fontWeight: 200,
+  width: "80%",
+  letterSpacing: "1.25px",
+  textAlign: "center",
+  margin: "1em",
+};
 
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: "16px",
-  verticalAlign: "5%",
-}
+const formStyles = {
+  display: "flex",
+  width: "80%",
+  justifyContent: "center",
+};
 
-const docLinkStyle = {
-  ...linkStyle,
-  listStyleType: "none",
-  marginBottom: 24,
-}
+const inputStyles = {
+  flex: 2,
+  height: "20px",
+  width: "100%",
+  border: `0px solid ${colors.black}`,
+  borderRadius: "10px",
+  padding: "1em",
+  backgroundColor: colors.primary,
+  color: colors.green,
+};
 
-const descriptionStyle = {
-  color: "#232129",
-  fontSize: "14px",
-}
+const buttonStyles = {
+  backgroundColor: colors.primary,
+  width: "100px",
+  padding: "1em",
+  color: colors.green,
+  fontWeight: 800,
+  border: `0px solid ${colors.black}`,
+  borderRadius: "10px",
+  marginLeft: "1em",
+};
 
-const docLink = {
-  text: "Documentation",
-  url: "https://www.gatsbyjs.com/docs/",
-  color: "#8954A8",
-}
-// data
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-    color: "#E95800",
-  },
-  {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    description:
-      "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
-    color: "#1099A8",
-  },
-  {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    description:
-      "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
-    color: "#BC027F",
-  },
-  {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    description:
-      "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
-    color: "#0D96F2",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-    color: "#000000",
-  },
-]
+const boldTextStyles = {
+  fontWeight: 800,
+};
 
-// markup
 const IndexPage = () => {
   return (
-    <main style={pageStyles}>
-      <title>Home Page</title>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site! </span>
-        <span role="img" aria-label="Party popper emojis">
-          🎉🎉🎉
-        </span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time.{" "}
-        <span role="img" aria-label="Sunglasses smiley emoji">
-          😎
-        </span>
-      </p>
-      <ul style={listStyles}>
-        <li style={docLinkStyle}>
-          <a
-            style={linkStyle}
-            href={`${docLink.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-          >
-            {docLink.text}
-          </a>
-        </li>
-        {links.map(link => (
-          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
-            <span>
-              <a
-                style={linkStyle}
-                href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-              >
-                {link.text}
-              </a>
-              <p style={descriptionStyle}>{link.description}</p>
-            </span>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-      />
-    </main>
-  )
-}
+    <>
+      <CssReset />
+      <main style={pageStyles}>
+        <title>DevStreams.io Beta</title>
 
-export default IndexPage
+        <div style={infoContainerStyles}>
+          <div style={headerContainer}>
+            <div style={brandStyles}>
+              <img
+                src={logo}
+                height="250"
+                width="250"
+                alt="DevStreams.io 'D' Logo"
+              ></img>
+              <h1 style={headingStyles}>DevStreams.io</h1>
+            </div>
+            <h2 style={subHeadingStyles}>
+              Granular tech streams across all platforms.
+            </h2>
+          </div>
+
+          <p style={paragraphStyles}>
+            Thanks to everyone for participating in the open alpha for{" "}
+            <b style={boldTextStyles}>DevStreams.io</b>. I will be making
+            strides to release a beta in the coming months. You can register
+            your email below to{" "}
+            <em>
+              <b style={boldTextStyles}>sign up for an email alert</b>
+            </em>{" "}
+            when it is ready!
+          </p>
+
+          <form
+            style={formStyles}
+            name="email-alert"
+            method="POST"
+            data-netlify="true"
+          >
+            <input
+              style={inputStyles}
+              name="email"
+              type="email"
+              placeholder="Enter your email to get an alert when its live!"
+            ></input>
+
+            <button style={buttonStyles} type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
+
+        <div style={screenshotContainerStyles}>
+          <img
+            src={screenshot}
+            style={screenshotStyles}
+            alt="DevStreams.io app screenshot"
+          ></img>
+        </div>
+      </main>
+    </>
+  );
+};
+
+export default IndexPage;
